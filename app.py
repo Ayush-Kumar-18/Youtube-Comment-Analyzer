@@ -1,12 +1,14 @@
 from flask import Flask, render_template, request
 import pandas as pd
 import time
+import pafy
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+
 
 app = Flask(__name__)
 
@@ -128,9 +130,19 @@ def team_info():
 def index():
     if request.method == 'POST':
         purl = request.form['sen']
+        video = pafy.new(purl)
+        value = video.videoid
+        vrl = "https://www.youtube.com/embed/" + value
         comments = get_comments(purl)
-        output = analyse(comments)
-        return render_template('output.html', output=output)
+        res = analyse(comments)
+        if res is not None:
+            output = str(len(comments))
+            result = "This Video generally has {} reviews".format(res)
+            return render_template('output.html', output=output, result=result, vrl=vrl)
+        else:
+            output = "0"
+            result = "Error"
+            return render_template('output.html', output=output, result=result, vrl=vrl)
     else:
         return render_template('post.html')
 
