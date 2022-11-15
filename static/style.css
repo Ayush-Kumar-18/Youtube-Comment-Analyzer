@@ -249,18 +249,6 @@ input[type="text"] {
     padding: 7px 15%;
   }
 }
-/* Team Members Page */
-.team{
-  display: flex;
-  align-items: center;  
-  position: absolute;  
-  height: 40px;
-  width: 100%;
-}
-
-/* .members-box{
-  
-} */
 
 /* contact us page */
 .c-container{
@@ -282,6 +270,13 @@ input[type="text"] {
   font-weight: bold;
   padding: 13px 27%;
 }
+
+/* Output page */
+.centerop{
+    margin: 0 auto;
+    padding: 0 30%;
+}
+
 /* 
 @media (max-width: 1090px) {
   .c-container{
