@@ -1,54 +1,291 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="public/Css/style.css" /> 
-</head>
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-<body>
-    <header>
-        <div id="navbar">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="./about.html">About</a></li>
-                <div class="dropdown">
-                    <button class="dropbtn">Team Members
-                      <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-content">
-                      <a href="#">Ayush Kumar</a>
-                      <a href="#">Abhinav Kumar</a>
-                      <a href="#">Keshav Kamal</a>
-                      <a href="#">Shreyam Nishesh</a>
-                      <a href="#">Anshuman Bal</a>
-                      <a href="#">Anunay Sinha</a>
-                      <a href="#">Yash Raj</a>
-                      <a href="#">Rahul Ranjan</a>
-                      <a href="#">Abhishek Mahato</a>
-                      <a href="#">Sambit Prusty</a>
-                    </div>
-                  </div>
-            </ul>
-        </div>
-    </header>
-    <!-- Auto typing content -->
-    <div class="container">
-        <p><span class="typed-text"></span><span class="cursor">&nbsp;</span></p>
-    </div>
-      
-    <!-- Action to the same route as in post method I added -->
-    <div class="form-container">
-        <form action="/submit" method="post">
-            <h2>Want to Check How Tweet Sounds!</h2>
-            <br><br>
-            <input type="text" name="name" id="name" placeholder="Enter a twitter user-name">
-            <br><br>
-            <button class="button" type="submit">Check</button>
-        </form>
-    </div>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    <script src="public/function/work.js"></script>
-</body>
-</html>
+#navbar{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  height: 40px;
+  width: 100%;
+}
+
+#navbar::before{
+  content: "";
+  background-color: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.3;
+}
+/* Navigation Bar :list styling */
+#navbar ul{
+  display: flex;
+}
+
+#navbar ul li a{
+  font-size: 1.5rem;
+  margin: 2px 10px;
+  padding: 6px 12px;
+  text-decoration: none;
+  color: white;
+  border-radius: 15px;
+}
+
+#navbar li{
+  list-style: none;
+}
+
+#navbar ul li a:hover{
+  color: black;
+  background-color: white;
+}
+
+/* The dropdown container */
+.dropdown {
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+  margin: 2px 10px;
+  padding: 1px 12px;
+  text-decoration: none;
+  color: white;
+  border-radius: 15px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+}
+.dropdown:hover .dropbtn {
+  color: black;
+  background-color: white;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Body Styling */
+body {
+  font-family: 'Times New Roman', sans-serif;
+  background: rgb(0,0,1);
+  background: linear-gradient(90deg,rgb(0 0 0) 0%, rgb(29 29 56 / 87%) 71%, rgb(28 58 22 / 81%) 100%);
+  /* background-color: #000; */
+  color: #eee;
+  background-color: #333;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before{
+  font-family: 'Times New Roman', sans-serif;
+  color: #eee;
+  content: "";
+  background: url('front.jpg') no-repeat center center/cover;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  min-height: 100vh;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.container {
+  height: 20%;
+  display: flex;
+  margin: 1px 25%;
+  width: 50.33%;
+}
+.container p {
+  font-size: 3rem;
+  padding: 1rem;
+  margin-top: 50px;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  text-align: center;
+  overflow: hidden;
+}
+.container p span.typed-text {
+  font-weight: normal;
+  color: #26eeea;
+}
+.container p span.cursor {
+  display: inline-block;
+  background-color: #ccc;
+  margin-left: 0.1rem;
+  width: 3px;
+  animation: blink 1s infinite;
+}
+.container p span.cursor.typing {
+  animation: none;
+}
+@keyframes blink {
+  0%  { background-color: #ccc; }
+  49% { background-color: #ccc; }
+  50% { background-color: transparent; }
+  99% { background-color: transparent; }
+  100%  { background-color: #ccc; }
+}
+
+.form-container {
+  background: rgb(220 220 220 / 50%);;
+  /* background: transparent; */
+  border-radius: 5px;
+  width: 44.5%;
+  padding: 50px 60px;
+  position: absolute;
+  top: 54%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 13px 9px 18px 1px #924ec6de;
+  margin-top: 70px;
+}
+
+
+@media (max-width: 1090px) {
+  .form-container {
+    padding: 27px 40px;
+    height: 33%;
+    width: 60%;
+    margin-top: 60px;
+  }
+}
+::placeholder{
+  padding: 0px 13px;
+  color: rgba(249, 252, 195, 0.803);
+}
+
+input[type="text"] {
+  font: Bold 15px/24px "Times New Roman", Arial, sans-serif;
+  width: 100%;
+  padding: 5px 10px;
+  letter-spacing: 1px;
+  background-color: transparent;
+}
+
+.button {
+  border: 1px solid #333;
+  border-radius: 3px;
+  background: #333;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 20px;
+  display: block;
+  margin: 0 auto;
+  transition: all .3s ease-in-out;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #bcbcbca6;
+    color: #000;
+    font-weight: bold;
+    box-shadow: -2px 4px 9px 0px rgb(29 29 1);
+}
+
+/* About Page */
+.about-container{
+  background: rgb(220 220 220 / 50%);
+  /* background: transparent; */
+  border-radius: 5px;
+  width: 55%;
+  height: 70%;
+  padding: 31px 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 13px 9px 18px 1px #924ec6de;
+  letter-spacing: 1.5px;
+  line-height: 1.5rem;
+  margin-top: 50px;
+}
+
+.about-container h1{
+  font-weight: bold;
+  padding: 13px 27%;
+}
+
+@media (max-width: 1090px) {
+  .about-container{
+    min-height: 80%;
+  }
+  .about-container h1{
+    padding: 7px 15%;
+  }
+}
+/* Team Members Page */
+.team{
+  display: flex;
+  align-items: center;  
+  position: absolute;  
+  height: 40px;
+  width: 100%;
+}
+
+/* .members-box{
+  
+} */
+
+/* contact us page */
+.c-container{
+  background: rgb(220 220 220 / 50%);
+  /* background: transparent; */
+  border-radius: 5px;
+  width: 71%;
+  height: 85%;
+  padding: 40px 70px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 13px 9px 18px 1px #d8d347de;
+  margin-top: 50px;
+}
+
+.c-container h1{
+  font-weight: bold;
+  padding: 13px 27%;
+}
+/* 
+@media (max-width: 1090px) {
+  .c-container{
+    min-height: 85%;
+    margin-top: 50px;
+  }
+} */
